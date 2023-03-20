@@ -22,6 +22,20 @@ class TodoEvent {
             }
         });
     }
+
+    addEventTodoCheckClick() {
+        const checkButtons = document.querySelectorAll(".todo-check");
+        checkButtons.forEach((checkButton,index) => {
+            checkButton.onclick = () => {
+                const todoMessages = document.querySelectorAll(".todo-message");
+                if(checkButton.checked) {
+                    todoMessages[index].style.textDecoration = "line-through";
+                } else {
+                    todoMessages[index].style.textDecoration = "none";
+                }
+            }
+        });
+    }
 }
 
 class TodoService {
@@ -58,7 +72,6 @@ class TodoService {
 
     loadTodoList() {
         const todoCheckList = document.querySelector(".todo-check-list");
-        const todoAddInput = document.querySelector(".todo-add-input");
         todoCheckList.innerHTML = ``;
         this.todoList.forEach(todoObj => {
             todoCheckList.innerHTML += `
@@ -70,5 +83,6 @@ class TodoService {
             `;
         });
         TodoEvent.getInstance().addEventTodoDeleteButton();
+        TodoEvent.getInstance().addEventTodoCheckClick();
     }
 }

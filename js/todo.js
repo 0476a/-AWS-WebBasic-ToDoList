@@ -22,20 +22,6 @@ class TodoEvent {
             }
         });
     }
-
-    addEventTodoCheckClick() {
-        const checkButtons = document.querySelectorAll(".todo-check");
-        checkButtons.forEach((checkButton,index) => {
-            checkButton.onclick = () => {
-                const todoMessages = document.querySelectorAll(".todo-message");
-                if(checkButton.checked) {
-                    todoMessages[index].style.textDecoration = "line-through";
-                } else {
-                    todoMessages[index].style.textDecoration = "none";
-                }
-            }
-        });
-    }
 }
 
 class TodoService {
@@ -85,7 +71,6 @@ class TodoService {
             `;
         });
         TodoEvent.getInstance().addEventTodoDeleteButton();
-        TodoEvent.getInstance().addEventTodoCheckClick();
     }
 
     
@@ -106,4 +91,6 @@ class showCount {
             <div class="todo-count-all counts all">전체:${TodoService.getInstance().todoList.length}</div>
         `
     }
+
+    
 }

@@ -64,10 +64,6 @@
     height: 50px;
 }
 
-.todo-add-error {
-    display: flex;
-}
-
 .todo-check-message {
     display: flex;
     justify-content: space-between;

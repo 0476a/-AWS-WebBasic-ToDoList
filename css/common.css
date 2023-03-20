@@ -1,0 +1,32 @@
+.container {
+    width: 600px;
+    height: 600px;
+    padding: 30px;
+    margin: 80px auto;
+    background-color: white;
+}
+
+input {
+    border: none;
+    outline: none;
+    padding: 5px;
+}
+
+input:focus {
+    background-color: #fafafa;
+}
+
+button {
+    border: none;
+    background-color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #fafafa;
+}
+
+button:active {
+    background-color: #f0f0f0;
+}

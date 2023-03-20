@@ -48,17 +48,18 @@ class TodoService {
         this.todoList.push(todoObj);
         localStorage.setItem("todoList", JSON.stringify(this.todoList));
         this.loadTodoList();
+        showCount.getInstance().totalCount();
     }
 
     deleteTodo(deleteIndex) {
         this.todoList.splice(deleteIndex,1);
         localStorage.setItem("todoList", JSON.stringify(this.todoList));
         this.loadTodoList()
+        showCount.getInstance().totalCount();
     }
 
     loadTodoList() {
         const todoCheckList = document.querySelector(".todo-check-list");
-        const todoAddInput = document.querySelector(".todo-add-input");
         todoCheckList.innerHTML = ``;
         this.todoList.forEach(todoObj => {
             todoCheckList.innerHTML += `
@@ -70,5 +71,24 @@ class TodoService {
             `;
         });
         TodoEvent.getInstance().addEventTodoDeleteButton();
+    }
+
+    
+}
+
+class showCount {
+    static #instance = null;
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new showCount();
+        }
+        return this.#instance;
+    }
+
+    totalCount() {
+        const all = document.querySelector(".all");
+        all.innerHTML = `
+            <div class="todo-count-all counts all">전체:${TodoService.getInstance().todoList.length}</div>
+        `
     }
 }

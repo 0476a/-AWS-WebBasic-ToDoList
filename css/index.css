@@ -27,7 +27,6 @@
 
 .todo-count div {
     border: none;
-    border-radius: 7px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,34 +37,34 @@
     margin: 0px 28px;
 }
 
-.todo-count button {
+.todo-count div button {
     border-radius: 7px;
     width: 100%;
     height: 100%;
     
 }
 
-.all {
+.todo-count-all {
     background-color: #dbdbdb;
 }
 
-.all:hover {
+.todo-count-all:hover {
     background-color: #dbdbdb88;
 }
 
-.ing  {
+.todo-count-ing  {
     background-color: #db7b7b;
 }
 
-.ing:hover {
+.todo-count-ing:hover {
     background-color: #db7b7b88
 }
 
-.complete {
+.todo-count-complete {
     background-color: #66e4ba;
 }
 
-.complete:hover {
+.todo-count-complete:hover {
     background-color: #66e4ba88
 }
 

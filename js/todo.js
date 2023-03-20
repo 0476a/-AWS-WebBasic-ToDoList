@@ -45,9 +45,77 @@ class TodoEvent {
                     TodoService.getInstance().todoList[index].todoChecked = false;
                 }
                 localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
-                showCount.getInstance().updateCheckedCount();
+                ShowCount.getInstance().updateCheckedCount();
             }
         });
+    }
+
+    addEventTodoAllClick() {
+        const checkButtons = document.querySelectorAll(".todo-check");
+        checkButtons.forEach((checkButton,index) => {
+            const todoMessages = document.querySelectorAll(".todo-message");
+            if(checkButton.checked) {
+                todoMessages[index].style.textDecoration = "line-through";
+                TodoService.getInstance().todoList[index].todoChecked = true;
+            } else {
+                todoMessages[index].style.textDecoration = "none";
+                TodoService.getInstance().todoList[index].todoChecked = false;
+            }
+            localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
+            ShowCount.getInstance().updateCheckedCount();
+        });
+    }
+
+    addEventTodoIngClick() {
+        const checkButtons = document.querySelectorAll(".todo-check");
+        checkButtons.forEach((checkButton,index) => {
+            const todoMessages = document.querySelectorAll(".todo-message");
+            if(checkButton.checked) {
+                todoMessages[index].style.display = "none"
+                todoMessages[index].style.textDecoration = "line-through";
+                TodoService.getInstance().todoList[index].todoChecked = true;
+            } else {
+                todoMessages[index].style.textDecoration = "none";
+                TodoService.getInstance().todoList[index].todoChecked = false;
+            }
+            localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
+            ShowCount.getInstance().updateCheckedCount();
+        });
+    }
+
+    addEventTodoCompleteClick() {
+        const checkButtons = document.querySelectorAll(".todo-check");
+        checkButtons.forEach((checkButton,index) => {
+            const todoMessages = document.querySelectorAll(".todo-message");
+            if(checkButton.checked) {
+                todoMessages[index].style.textDecoration = "line-through";
+                TodoService.getInstance().todoList[index].todoChecked = true;
+            } else {
+                todoMessages[index].style.display = "none"
+                todoMessages[index].style.textDecoration = "none";
+                TodoService.getInstance().todoList[index].todoChecked = false;
+            }
+            localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
+            ShowCount.getInstance().updateCheckedCount();
+        });
+    }
+
+
+    addEventTodoCountClick() {s
+        const all = document.querySelector("all");
+        all.onclick = () => {
+            this.addEventTodoCheckClick();
+        }
+
+        const ing = document.querySelector("ing");
+        ing.onclick = () => {
+            this.addEventTodoIngClick();
+        }
+
+        const complete = document.querySelector("complete");
+        complete.onclick = () => {
+            this.addEventTodoCompleteClick();
+        }
     }
 }
 
@@ -113,16 +181,17 @@ class TodoService {
         });
         TodoEvent.getInstance().addEventTodoDeleteButton();
         TodoEvent.getInstance().addEventTodoCheckClick();
-        showCount.getInstance().updateCheckedCount()
-        showCount.getInstance().totalCount(this.todoList.length);
+        ShowCount.getInstance().updateCheckedCount();
+        ShowCount.getInstance().totalCount(this.todoList.length);
+        // TodoEvent.getInstance().addEventTodoCountClick();
     }
 }
 
-class showCount {
+class ShowCount {
     static #instance = null;
     static getInstance() {
         if(this.#instance == null) {
-            this.#instance = new showCount();
+            this.#instance = new ShowCount();
         }
         return this.#instance;
     }
@@ -130,7 +199,7 @@ class showCount {
     totalCount(length) {
         const all = document.querySelector(".all");
         all.innerHTML = `
-            <button class="todo-count-all counts all">전체:${length}</button>
+            <button class="todo-count-all">전체:${length}</button>
         `
     }
 
@@ -142,31 +211,31 @@ class showCount {
         let uncheckedCount = 0;
         if(checkButtons.length == 0) {
             ing.innerHTML = `
-                <button class="todo-count-ing counts ing">진행중:${uncheckedCount}</button>
+                <button class="todo-count-ing">진행중:${uncheckedCount}</button>
             `;
             complete.innerHTML = `
-                <button class="todo-count-complete counts complete">완료:${checkedCount}</button>
+                <button class="todo-count-complete">완료:${checkedCount}</button>
             `;
         }
         checkButtons.forEach((checkButton) => {
             if (checkButton.checked) {
                 checkedCount++;
                 complete.innerHTML = `
-                    <button class="todo-count-complete counts complete">완료:${checkedCount}</button>
+                    <button class="todo-count-complete">완료:${checkedCount}</button>
                 `;
                 if(uncheckedCount == 0) {
                     ing.innerHTML = `
-                    <button class="todo-count-ing counts ing">진행중:${uncheckedCount}</button>
+                    <button class="todo-count-ing">진행중:${uncheckedCount}</button>
                 `;
                 }
             } else {
                 uncheckedCount++;
                 ing.innerHTML = `
-                <button class="todo-count-ing counts ing">진행중:${uncheckedCount}</button>
+                <button class="todo-count-ing">진행중:${uncheckedCount}</button>
                 `;
                 if(checkedCount == 0) {
                     complete.innerHTML = `
-                    <button class="todo-count-complete counts complete">완료:${checkedCount}</button>
+                    <button class="todo-count-complete">완료:${checkedCount}</button>
                 `;
                 }
             }

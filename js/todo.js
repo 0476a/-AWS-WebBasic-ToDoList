@@ -52,33 +52,55 @@ class TodoEvent {
 
     addEventTodoAllClick() {
         const checkButtons = document.querySelectorAll(".todo-check");
-        checkButtons.forEach((_,index) => {
+        checkButtons.forEach((checkButton,index) => {
+            const todoMessages = document.querySelectorAll(".todo-message");
             const todoCheckMessages = document.querySelectorAll(".todo-check-message");
             todoCheckMessages[index].style.display = "flex";
+            if(checkButton.checked) {
+                todoMessages[index].style.textDecoration = "line-through";
+                TodoService.getInstance().todoList[index].todoChecked = true;
+            } else {
+                todoMessages[index].style.textDecoration = "none";
+                TodoService.getInstance().todoList[index].todoChecked = false;
+            }
+            localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
+            ShowCount.getInstance().updateCheckedCount();
         });
     }
 
     addEventTodoIngClick() {
         const checkButtons = document.querySelectorAll(".todo-check");
         checkButtons.forEach((checkButton,index) => {
+            const todoMessages = document.querySelectorAll(".todo-message");
             const todoCheckMessages = document.querySelectorAll(".todo-check-message");
             if(checkButton.checked) {
                 todoCheckMessages[index].style.display = "none";
+                TodoService.getInstance().todoList[index].todoChecked = true;
             } else {
                 todoCheckMessages[index].style.display = "flex";
+                todoMessages[index].style.textDecoration = "none";
+                TodoService.getInstance().todoList[index].todoChecked = false;
             }
+            localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
+            ShowCount.getInstance().updateCheckedCount();
         });
     }
 
     addEventTodoCompleteClick() {
         const checkButtons = document.querySelectorAll(".todo-check");
         checkButtons.forEach((checkButton,index) => {
+            const todoMessages = document.querySelectorAll(".todo-message");
             const todoCheckMessages = document.querySelectorAll(".todo-check-message");
             if(!checkButton.checked) {
                 todoCheckMessages[index].style.display = "none";
+                TodoService.getInstance().todoList[index].todoChecked = false;
             } else {
                 todoCheckMessages[index].style.display = "flex";
+                todoMessages[index].style.textDecoration = "line-through";
+                TodoService.getInstance().todoList[index].todoChecked = true;
             }
+            localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
+            ShowCount.getInstance().updateCheckedCount();
         });
     }
 

@@ -130,7 +130,7 @@ class showCount {
     totalCount(length) {
         const all = document.querySelector(".all");
         all.innerHTML = `
-            <div class="todo-count-all counts all">전체:${length}</div>
+            <button class="todo-count-all counts all">전체:${length}</button>
         `
     }
 
@@ -142,31 +142,31 @@ class showCount {
         let uncheckedCount = 0;
         if(checkButtons.length == 0) {
             ing.innerHTML = `
-                <div class="todo-count-ing counts ing">진행중:${uncheckedCount}</div>
+                <button class="todo-count-ing counts ing">진행중:${uncheckedCount}</button>
             `;
             complete.innerHTML = `
-                <div class="todo-count-complete counts complete">완료:${checkedCount}</div>
+                <button class="todo-count-complete counts complete">완료:${checkedCount}</button>
             `;
         }
         checkButtons.forEach((checkButton) => {
             if (checkButton.checked) {
                 checkedCount++;
                 complete.innerHTML = `
-                    <div class="todo-count-complete counts complete">완료:${checkedCount}</div>
+                    <button class="todo-count-complete counts complete">완료:${checkedCount}</button>
                 `;
                 if(uncheckedCount == 0) {
                     ing.innerHTML = `
-                    <div class="todo-count-ing counts ing">진행중:${uncheckedCount}</div>
+                    <button class="todo-count-ing counts ing">진행중:${uncheckedCount}</button>
                 `;
                 }
             } else {
                 uncheckedCount++;
                 ing.innerHTML = `
-                <div class="todo-count-ing counts ing">진행중:${uncheckedCount}</div>
+                <button class="todo-count-ing counts ing">진행중:${uncheckedCount}</button>
                 `;
                 if(checkedCount == 0) {
                     complete.innerHTML = `
-                    <div class="todo-count-complete counts complete">완료:${checkedCount}</div>
+                    <button class="todo-count-complete counts complete">완료:${checkedCount}</button>
                 `;
                 }
             }

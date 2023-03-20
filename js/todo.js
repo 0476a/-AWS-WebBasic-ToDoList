@@ -9,8 +9,17 @@ class TodoEvent {
 
     addEventTodoAddButton() {
         const todoAddButton = document.querySelector(".todo-add-button");
+        const todoAddInput = document.querySelector(".todo-add-input");
+        const todoAddHidden = document.querySelector(".todo-add-hidden-blank div");
+
         todoAddButton.onclick = () => {
-            TodoService.getInstance().addTodo();
+            if(todoAddInput.value == '') {
+                TodoService.getInstance().blankTodo();
+            }else {
+                TodoService.getInstance().addTodo();
+                todoAddHidden.classList.add("hidden-blank");
+            }
+            
         }
     }
 
@@ -39,6 +48,13 @@ class TodoService {
         this.todoList = new Array();
     }
 
+    blankTodo() {
+        const todoAddHidden = document.querySelector(".todo-add-hidden-blank div");
+        if(todoAddHidden.classList.contains("hidden-blank")) {
+            todoAddHidden.classList.remove("hidden-blank");
+        }
+    }
+    
     addTodo() {
         const todoAddInput = document.querySelector(".todo-add-input");
 
@@ -65,7 +81,7 @@ class TodoService {
                 <li class="todo-check-message">
                     <input type="checkbox" class="todo-check">
                     <div class="todo-message">${todoObj.todoContent}</div>
-                    <button class="delete-button">❌</button>
+                    <button classs="delete-button">❌</button>
                 </li>
             `;
         });

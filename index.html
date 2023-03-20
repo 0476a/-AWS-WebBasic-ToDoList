@@ -16,14 +16,20 @@
             <header class="main-header">
                 <h1 class="main-title"><i class="fa-solid fa-user-pen"></i>TO-DO LIST</h1>
                 <div class="todo-count">
-                    <div class="todo-count-all counts">전체:</div>
-                    <div class="todo-count-ing counts">진행중:</div>
-                    <div class="todo-count-complete counts">완료:</div> 
+                    <label for="all">
+                        <div class="todo-count-all counts all">전체:</div>
+                    </label>
+                    <label for="ing">
+                        <div class="todo-count-ing counts ing">진행중:</div>
+                    </label>
+                    <label for="complete">
+                        <div class="todo-count-complete counts complete">완료:</div> 
+                    </label>
                 </div>
             </header>
             <div class="todo-main">
                 <div class="todo-add">
-                    <input type="text" class="todo-add-input">
+                    <input type="text" class="todo-add-input" placeholder="새로 작성하기">
                     <button class="todo-add-button">➕</button>
                 </div>
                 <div class="todo-list">

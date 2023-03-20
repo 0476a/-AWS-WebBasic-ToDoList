@@ -51,21 +51,24 @@ class TodoService {
     }
 
     deleteTodo(deleteIndex) {
-        const todoList = JSON.parse(localStorage.getItem("todoList"));
-        todoList.splice(deleteIndex,1);
-        localStorage.setItem("todoList", JSON.stringify(todoList));
+        this.todoList.splice(deleteIndex,1);
+        localStorage.setItem("todoList", JSON.stringify(this.todoList));
+        this.loadTodoList()
     }
 
     loadTodoList() {
         const todoCheckList = document.querySelector(".todo-check-list");
-            const todoAddInput = document.querySelector(".todo-add-input");
+        const todoAddInput = document.querySelector(".todo-add-input");
+        todoCheckList.innerHTML = ``;
+        this.todoList.forEach(todoObj => {
             todoCheckList.innerHTML += `
                 <li class="todo-check-message">
                     <input type="checkbox" class="todo-check">
-                    <div class="todo-message">${todoAddInput.value}</div>
+                    <div class="todo-message">${todoObj.todoContent}</div>
                     <button class="delete-button">❌</button>
                 </li>
             `;
-            TodoEvent.getInstance().addEventTodoDeleteButton();
+        });
+        TodoEvent.getInstance().addEventTodoDeleteButton();
     }
 }

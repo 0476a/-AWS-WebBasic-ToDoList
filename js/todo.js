@@ -52,68 +52,50 @@ class TodoEvent {
 
     addEventTodoAllClick() {
         const checkButtons = document.querySelectorAll(".todo-check");
-        checkButtons.forEach((checkButton,index) => {
-            const todoMessages = document.querySelectorAll(".todo-message");
-            if(checkButton.checked) {
-                todoMessages[index].style.textDecoration = "line-through";
-                TodoService.getInstance().todoList[index].todoChecked = true;
-            } else {
-                todoMessages[index].style.textDecoration = "none";
-                TodoService.getInstance().todoList[index].todoChecked = false;
-            }
-            localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
-            ShowCount.getInstance().updateCheckedCount();
+        checkButtons.forEach((_,index) => {
+            const todoCheckMessages = document.querySelectorAll(".todo-check-message");
+            todoCheckMessages[index].style.display = "flex";
         });
     }
 
     addEventTodoIngClick() {
         const checkButtons = document.querySelectorAll(".todo-check");
         checkButtons.forEach((checkButton,index) => {
-            const todoMessages = document.querySelectorAll(".todo-message");
+            const todoCheckMessages = document.querySelectorAll(".todo-check-message");
             if(checkButton.checked) {
-                todoMessages[index].style.display = "none"
-                todoMessages[index].style.textDecoration = "line-through";
-                TodoService.getInstance().todoList[index].todoChecked = true;
+                todoCheckMessages[index].style.display = "none";
             } else {
-                todoMessages[index].style.textDecoration = "none";
-                TodoService.getInstance().todoList[index].todoChecked = false;
+                todoCheckMessages[index].style.display = "flex";
             }
-            localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
-            ShowCount.getInstance().updateCheckedCount();
         });
     }
 
     addEventTodoCompleteClick() {
         const checkButtons = document.querySelectorAll(".todo-check");
         checkButtons.forEach((checkButton,index) => {
-            const todoMessages = document.querySelectorAll(".todo-message");
-            if(checkButton.checked) {
-                todoMessages[index].style.textDecoration = "line-through";
-                TodoService.getInstance().todoList[index].todoChecked = true;
+            const todoCheckMessages = document.querySelectorAll(".todo-check-message");
+            if(!checkButton.checked) {
+                todoCheckMessages[index].style.display = "none";
             } else {
-                todoMessages[index].style.display = "none"
-                todoMessages[index].style.textDecoration = "none";
-                TodoService.getInstance().todoList[index].todoChecked = false;
+                todoCheckMessages[index].style.display = "flex";
             }
-            localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
-            ShowCount.getInstance().updateCheckedCount();
         });
     }
 
 
-    addEventTodoCountClick() {s
-        const all = document.querySelector("all");
-        all.onclick = () => {
-            this.addEventTodoCheckClick();
+    addEventTodoCountClick() {
+        const todoCountAll = document.querySelector(".todo-count-all");
+        todoCountAll.onclick = () => {
+            this.addEventTodoAllClick();
         }
 
-        const ing = document.querySelector("ing");
-        ing.onclick = () => {
+        const todoCountIng = document.querySelector(".todo-count-ing");
+        todoCountIng.onclick = () => {
             this.addEventTodoIngClick();
         }
 
-        const complete = document.querySelector("complete");
-        complete.onclick = () => {
+        const todoCountComplete = document.querySelector(".todo-count-complete");
+        todoCountComplete.onclick = () => {
             this.addEventTodoCompleteClick();
         }
     }
@@ -183,7 +165,7 @@ class TodoService {
         TodoEvent.getInstance().addEventTodoCheckClick();
         ShowCount.getInstance().updateCheckedCount();
         ShowCount.getInstance().totalCount(this.todoList.length);
-        // TodoEvent.getInstance().addEventTodoCountClick();
+        TodoEvent.getInstance().addEventTodoCountClick()
     }
 }
 

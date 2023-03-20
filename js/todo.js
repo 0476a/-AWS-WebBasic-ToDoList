@@ -99,7 +99,7 @@ class TodoService {
                 <li class="todo-check-message">
                     <input type="checkbox" class="todo-check">
                     <div class="todo-message">${todoObj.todoContent}</div>
-                    <button classs="delete-button">❌</button>
+                    <button class="delete-button">❌</button>
                 </li>
             `;
         });

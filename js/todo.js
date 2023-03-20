@@ -39,9 +39,12 @@ class TodoEvent {
                 const todoMessages = document.querySelectorAll(".todo-message");
                 if(checkButton.checked) {
                     todoMessages[index].style.textDecoration = "line-through";
+                    TodoService.getInstance().todoList[index].todoChecked = true;
                 } else {
                     todoMessages[index].style.textDecoration = "none";
+                    TodoService.getInstance().todoList[index].todoChecked = false;
                 }
+                localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
                 showCount.getInstance().updateCheckedCount();
             }
         });
@@ -60,7 +63,12 @@ class TodoService {
     todoList = null;
 
     constructor() {
-        this.todoList = new Array();
+        if(localStorage.getItem("todoList") == null) {
+            this.todoList = new Array();
+        } else {
+            this.todoList = JSON.parse(localStorage.getItem("todoList"));
+        }
+        this.loadTodoList();
     }
 
     blankTodo() {
@@ -74,7 +82,8 @@ class TodoService {
         const todoAddInput = document.querySelector(".todo-add-input");
 
         const todoObj = {
-            todoContent: todoAddInput.value
+            todoContent: todoAddInput.value,
+            todoChecked: false
         };
         this.todoList.push(todoObj);
         localStorage.setItem("todoList", JSON.stringify(this.todoList));
@@ -95,16 +104,21 @@ class TodoService {
         const todoCheckList = document.querySelector(".todo-check-list");
         todoCheckList.innerHTML = ``;
         this.todoList.forEach(todoObj => {
+            const checkedStatus = todoObj.todoChecked ? "checked" : "";
+            const decorationStatus = todoObj.todoChecked? "line-through" : "none";
             todoCheckList.innerHTML += `
                 <li class="todo-check-message">
-                    <input type="checkbox" class="todo-check">
-                    <div class="todo-message">${todoObj.todoContent}</div>
+                    <input type="checkbox" class="todo-check" ${checkedStatus}>
+                    <div class="todo-message" style="text-decoration: ${decorationStatus};">${todoObj.todoContent}</div>
                     <button class="delete-button">❌</button>
                 </li>
             `;
+            
         });
         TodoEvent.getInstance().addEventTodoDeleteButton();
         TodoEvent.getInstance().addEventTodoCheckClick();
+        // showCount.getInstance().totalCount();
+        showCount.getInstance().updateCheckedCount()
     }
 }
 

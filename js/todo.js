@@ -88,16 +88,12 @@ class TodoService {
         this.todoList.push(todoObj);
         localStorage.setItem("todoList", JSON.stringify(this.todoList));
         this.loadTodoList();
-        showCount.getInstance().totalCount();
-        showCount.getInstance().updateCheckedCount();
     }
 
     deleteTodo(deleteIndex) {
         this.todoList.splice(deleteIndex,1);
         localStorage.setItem("todoList", JSON.stringify(this.todoList));
         this.loadTodoList()
-        showCount.getInstance().totalCount();
-        showCount.getInstance().updateCheckedCount();
     }
 
     loadTodoList() {
@@ -117,8 +113,8 @@ class TodoService {
         });
         TodoEvent.getInstance().addEventTodoDeleteButton();
         TodoEvent.getInstance().addEventTodoCheckClick();
-        // showCount.getInstance().totalCount();
         showCount.getInstance().updateCheckedCount()
+        showCount.getInstance().totalCount(this.todoList.length);
     }
 }
 
@@ -131,10 +127,10 @@ class showCount {
         return this.#instance;
     }
 
-    totalCount() {
+    totalCount(length) {
         const all = document.querySelector(".all");
         all.innerHTML = `
-            <div class="todo-count-all counts all">전체:${TodoService.getInstance().todoList.length}</div>
+            <div class="todo-count-all counts all">전체:${length}</div>
         `
     }
 

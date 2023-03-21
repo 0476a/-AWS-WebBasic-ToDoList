@@ -80,7 +80,7 @@ class TodoEvent {
                         this.addEventTodoCompleteClick();
                     }
                 }
-                localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
+                localStorage.setItem(TodoService.getInstance().dateString, JSON.stringify(TodoService.getInstance().todoList));
                 ShowCount.getInstance().updateCheckedCount();
                 this.addEventTodoCountClick();
             }
@@ -100,7 +100,7 @@ class TodoEvent {
                 todoMessages[index].style.textDecoration = "none";
                 TodoService.getInstance().todoList[index].todoChecked = false;
             }
-            localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
+            localStorage.setItem(TodoService.getInstance().dateString, JSON.stringify(TodoService.getInstance().todoList));
 
         });
     }
@@ -118,7 +118,7 @@ class TodoEvent {
                 todoMessages[index].style.textDecoration = "none";
                 TodoService.getInstance().todoList[index].todoChecked = false;
             }
-            localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
+            localStorage.setItem(TodoService.getInstance().dateString, JSON.stringify(TodoService.getInstance().todoList));
         });
     }
 
@@ -135,7 +135,7 @@ class TodoEvent {
                 todoMessages[index].style.textDecoration = "line-through";
                 TodoService.getInstance().todoList[index].todoChecked = true;
             }
-            localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
+            localStorage.setItem(TodoService.getInstance().dateString, JSON.stringify(TodoService.getInstance().todoList));
         });
     }
 
@@ -173,6 +173,7 @@ class TodoService {
         return this.#instance;
     }
     todoList = null;
+    
 
     constructor(dateString) {
         this.dateString = dateString;

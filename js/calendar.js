@@ -8,12 +8,7 @@ class Calendar {
     }
 
     constructor() {
-        this.currentDate = new Date();
         this.displayDate = new Date();
-        this.init();
-    }
-
-    init() {
         this.renderCalendar();
         this.addEventListeners();
     }
@@ -22,15 +17,15 @@ class Calendar {
         const prevButton = document.querySelector('.calendar-prev');
         const nextButton = document.querySelector('.calendar-next');
 
-        prevButton.addEventListener('click', () => {
+        prevButton.onclick = () => {
             this.displayDate.setMonth(this.displayDate.getMonth() - 1);
             this.renderCalendar();
-        });
+        }
 
-        nextButton.addEventListener('click', () => {
+        nextButton.onclick = () => {
             this.displayDate.setMonth(this.displayDate.getMonth() + 1);
             this.renderCalendar();
-        });
+        };
     }
 
     renderCalendar() {
@@ -57,15 +52,16 @@ class Calendar {
 
                 if ((i === currentDay.getDay()) && (currentDay <= lastDayOfMonth)) {
                     dayCell.textContent = currentDay.getDate();
+                    dayCell.onclick = () => {
+                        const year = this.displayDate.getFullYear();
+                        const month = this.displayDate.getMonth() + 1;
+                        const day = parseInt(dayCell.textContent);
+                        const dateString = `${year}.${month}.${day}`;
+                        window.location.href = `./index.html?date=${dateString}`;
+                    }
+
                     currentDay.setDate(currentDay.getDate() + 1);
                 }
-                dayCell.addEventListener("click", () => {
-                    const year = this.displayDate.getFullYear();
-                    const month = this.displayDate.getMonth() + 1;
-                    const day = parseInt(dayCell.textContent);
-                    const dateString = `${year}.${month}.${day}`;
-                    window.location.href = `./index.html?date=${dateString}`;
-                });
                 weekRow.appendChild(dayCell);
             }
 

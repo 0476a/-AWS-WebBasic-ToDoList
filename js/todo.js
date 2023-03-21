@@ -20,6 +20,7 @@ class TodoEvent {
             }else {
                 TodoService.getInstance().addTodo();
                 todoAddHidden.classList.add("hidden-blank");
+                todoAddInput.value = "";
                 if(this.currentFilter == "ing"){
                     this.addEventTodoIngClick();
                 }

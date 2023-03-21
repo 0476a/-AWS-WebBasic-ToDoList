@@ -20,12 +20,12 @@ class TodoEvent {
             }else {
                 TodoService.getInstance().addTodo();
                 todoAddHidden.classList.add("hidden-blank");
-                if(currentFilter === "ing"){
-
+                if(this.currentFilter == "ing"){
+                    this.addEventTodoIngClick();
                 }
 
-                if(currentFilter === "complete"){
-
+                if(this.currentFilter == "complete"){
+                    this.addEventTodoCompleteClick()
                 }
             }
         }
@@ -48,13 +48,13 @@ class TodoEvent {
                 if(checkButton.checked) {
                     todoMessages[index].style.textDecoration = "line-through";
                     TodoService.getInstance().todoList[index].todoChecked = true;
-                    if (this.currentFilter !== "all") {
+                    if (this.currentFilter == "ing") {
                         this.addEventTodoIngClick();
                     }
                 } else {
                     todoMessages[index].style.textDecoration = "none";
                     TodoService.getInstance().todoList[index].todoChecked = false;
-                    if (this.currentFilter !== "all") {
+                    if (this.currentFilter == "complete") {
                         this.addEventTodoCompleteClick();
                     }
                 }

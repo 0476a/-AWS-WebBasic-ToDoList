@@ -13,6 +13,7 @@ class TodoEvent {
 
     currentFilter = "all";
 
+
     addEventTodoAddButton() {
         const todoAddButton = document.querySelector(".todo-add-button");
         const todoAddInput = document.querySelector(".todo-add-input");
@@ -183,6 +184,7 @@ class TodoService {
         } else {
             this.todoList = JSON.parse(localStorage.getItem(this.dateString));
         }
+        this.viewDate(dateString);
         this.loadTodoList();
     }
 
@@ -254,6 +256,14 @@ class TodoService {
         }
 
     }
+
+    viewDate(dateString) {
+        const mainHeader = document.querySelector(".main-header");
+        mainHeader.innerHTML = `
+            <div class="date">${dateString}</div>
+            ${mainHeader.innerHTML}
+        `;
+    } 
 }
 
 class ShowCount {

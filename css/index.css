@@ -125,6 +125,7 @@
     border-radius: 30px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
     height: 30px;
 
@@ -145,4 +146,20 @@
 
 .date {
     font-size: 30px;
+}
+
+.time-input {
+    display: flex;
+}
+
+.start-time, .last-time {
+    background-color: transparent;
+}
+
+.time-view {
+    display: flex;
+}
+
+.last-time-view {
+    margin-left: 10px;
 }

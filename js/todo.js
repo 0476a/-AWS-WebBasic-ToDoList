@@ -196,11 +196,14 @@ class TodoService {
     }
     
     addTodo() {
+        const startTime = document.querySelector(".start-time");
+        const lastTime = document.querySelector(".last-time");
         const todoAddInput = document.querySelector(".todo-add-input");
-
         const todoObj = {
             todoContent: todoAddInput.value,
             todoChecked: false,
+            startTime: startTime.value,
+            lastTime: lastTime.value,
         };
         this.todoList.push(todoObj);
         localStorage.setItem(this.dateString, JSON.stringify(this.todoList));
@@ -222,7 +225,13 @@ class TodoService {
             todoCheckList.innerHTML += `
                 <li class="todo-check-message">
                     <input type="checkbox" class="todo-check" ${checkedStatus}>
-                    <div class="todo-message" style="text-decoration: ${decorationStatus};">${todoObj.todoContent}</div>
+                    <div class="todo-message" style="text-decoration: ${decorationStatus};">
+                        ${todoObj.todoContent}
+                        <div class="time-view">
+                            <div class="start-time-view">시작시간: ${todoObj.startTime}</div>
+                            <div class="last-time-view">마감시간: ${todoObj.lastTime}</div>
+                        </div>
+                    </div>
                     <button class="delete-button">❌</button>
                 </li>
             `;

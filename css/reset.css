@@ -14,7 +14,7 @@
 body {
     background-image: url("/img/img8.jpg");
     background-repeat: no-repeat;
-    background-size: auto auto;
+    background-size: cover;
     font-family: 'Humanbumsuk';
     margin: 0;
 }

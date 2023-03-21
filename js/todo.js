@@ -1,3 +1,7 @@
+const urlParams = new URLSearchParams(window.location.search);
+const dateString = urlParams.get("date");
+console.log(dateString);
+
 class TodoEvent {
     static #instance = null;
     static getInstance() {
@@ -164,18 +168,19 @@ class TodoService {
     static #instance = null;
     static getInstance() {
         if(this.#instance == null) {
-            this.#instance = new TodoService();
+            this.#instance = new TodoService(dateString);
         }
         return this.#instance;
     }
-
     todoList = null;
 
-    constructor() {
-        if(localStorage.getItem("todoList") == null) {
+    constructor(dateString) {
+        this.dateString = dateString;
+
+        if(localStorage.getItem(this.dateString) == null) {
             this.todoList = new Array();
         } else {
-            this.todoList = JSON.parse(localStorage.getItem("todoList"));
+            this.todoList = JSON.parse(localStorage.getItem(this.dateString));
         }
         this.loadTodoList();
     }
@@ -192,16 +197,16 @@ class TodoService {
 
         const todoObj = {
             todoContent: todoAddInput.value,
-            todoChecked: false
+            todoChecked: false,
         };
         this.todoList.push(todoObj);
-        localStorage.setItem("todoList", JSON.stringify(this.todoList));
+        localStorage.setItem(this.dateString, JSON.stringify(this.todoList));
         this.loadTodoList();
     }
 
     deleteTodo(deleteIndex) {
         this.todoList.splice(deleteIndex,1);
-        localStorage.setItem("todoList", JSON.stringify(this.todoList));
+        localStorage.setItem(this.dateString, JSON.stringify(this.todoList));
         this.loadTodoList()
     }
 

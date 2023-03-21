@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.calendar-header {
+    text-align: center;
+    padding: 20px;
+}
+
+.calendar-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.calendar-main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.calendar-day {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    min-height: 100px;
+    cursor: pointer;
+}
+
+.calendar-day:nth-child(7n + 1) {
+    color: red;
+}
+
+.calendar-day:nth-child(7n) {
+    color: blue;
+}

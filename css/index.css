@@ -52,6 +52,10 @@
     background-color: #dbdbdb88;
 }
 
+.todo-count .clicked {
+    border: 2px solid black;
+}
+
 .todo-count-ing  {
     background-color: #db7b7b;
 }

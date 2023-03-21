@@ -79,6 +79,7 @@ class TodoEvent {
                 TodoService.getInstance().todoList[index].todoChecked = false;
             }
             localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
+
         });
     }
 
@@ -122,18 +123,21 @@ class TodoEvent {
         todoCountAll.onclick = () => {
             this.currentFilter = "all";
             this.addEventTodoAllClick();
+            TodoService.getInstance().clickedButtonColor();
         }
 
         const todoCountIng = document.querySelector(".todo-count-ing");
         todoCountIng.onclick = () => {
             this.currentFilter = "ing";
             this.addEventTodoIngClick();
+            TodoService.getInstance().clickedButtonColor();
         }
 
         const todoCountComplete = document.querySelector(".todo-count-complete");
         todoCountComplete.onclick = () => {
             this.currentFilter = "complete";
             this.addEventTodoCompleteClick();
+            TodoService.getInstance().clickedButtonColor();
         }
     }
 }
@@ -203,6 +207,28 @@ class TodoService {
         ShowCount.getInstance().updateCheckedCount();
         ShowCount.getInstance().totalCount(this.todoList.length);
         TodoEvent.getInstance().addEventTodoCountClick()
+    }
+
+    clickedButtonColor() {
+        const todoCountAll = document.querySelector(".todo-count-all");
+        const todoCountIng = document.querySelector(".todo-count-ing");
+        const todoCountComplete = document.querySelector(".todo-count-complete");
+        if(TodoEvent.getInstance().currentFilter === "all") {
+            todoCountAll.classList.add('clicked');
+            todoCountIng.classList.remove('clicked');
+            todoCountComplete.classList.remove('clicked');
+        }
+        if(TodoEvent.getInstance().currentFilter === "ing") {
+            todoCountIng.classList.add('clicked');
+            todoCountAll.classList.remove('clicked');
+            todoCountComplete.classList.remove('clicked');
+        }
+        if(TodoEvent.getInstance().currentFilter === "complete") {
+            todoCountComplete.classList.add('clicked');
+            todoCountIng.classList.remove('clicked');
+            todoCountAll.classList.remove('clicked');
+        }
+
     }
 }
 

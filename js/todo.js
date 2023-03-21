@@ -7,6 +7,8 @@ class TodoEvent {
         return this.#instance;
     }
 
+    currentFilter = "all";
+
     addEventTodoAddButton() {
         const todoAddButton = document.querySelector(".todo-add-button");
         const todoAddInput = document.querySelector(".todo-add-input");
@@ -18,8 +20,14 @@ class TodoEvent {
             }else {
                 TodoService.getInstance().addTodo();
                 todoAddHidden.classList.add("hidden-blank");
+                if(currentFilter === "ing"){
+
+                }
+
+                if(currentFilter === "complete"){
+
+                }
             }
-            
         }
     }
 
@@ -40,12 +48,19 @@ class TodoEvent {
                 if(checkButton.checked) {
                     todoMessages[index].style.textDecoration = "line-through";
                     TodoService.getInstance().todoList[index].todoChecked = true;
+                    if (this.currentFilter !== "all") {
+                        this.addEventTodoIngClick();
+                    }
                 } else {
                     todoMessages[index].style.textDecoration = "none";
                     TodoService.getInstance().todoList[index].todoChecked = false;
+                    if (this.currentFilter !== "all") {
+                        this.addEventTodoCompleteClick();
+                    }
                 }
                 localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
                 ShowCount.getInstance().updateCheckedCount();
+                this.addEventTodoCountClick();
             }
         });
     }
@@ -64,7 +79,6 @@ class TodoEvent {
                 TodoService.getInstance().todoList[index].todoChecked = false;
             }
             localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
-            ShowCount.getInstance().updateCheckedCount();
         });
     }
 
@@ -82,7 +96,6 @@ class TodoEvent {
                 TodoService.getInstance().todoList[index].todoChecked = false;
             }
             localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
-            ShowCount.getInstance().updateCheckedCount();
         });
     }
 
@@ -100,7 +113,6 @@ class TodoEvent {
                 TodoService.getInstance().todoList[index].todoChecked = true;
             }
             localStorage.setItem("todoList", JSON.stringify(TodoService.getInstance().todoList));
-            ShowCount.getInstance().updateCheckedCount();
         });
     }
 
@@ -108,16 +120,19 @@ class TodoEvent {
     addEventTodoCountClick() {
         const todoCountAll = document.querySelector(".todo-count-all");
         todoCountAll.onclick = () => {
+            this.currentFilter = "all";
             this.addEventTodoAllClick();
         }
 
         const todoCountIng = document.querySelector(".todo-count-ing");
         todoCountIng.onclick = () => {
+            this.currentFilter = "ing";
             this.addEventTodoIngClick();
         }
 
         const todoCountComplete = document.querySelector(".todo-count-complete");
         todoCountComplete.onclick = () => {
+            this.currentFilter = "complete";
             this.addEventTodoCompleteClick();
         }
     }

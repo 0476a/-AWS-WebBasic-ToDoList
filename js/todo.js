@@ -32,6 +32,16 @@ class TodoEvent {
         }
     }
 
+    addEventAddTodoKeyUp() {
+        const todoAddInput = document.querySelector(".todo-add-input");
+        todoAddInput.onkeyup = () => {
+            if(window.event.keyCode == 13) {
+                const todoAddButton = document.querySelector(".todo-add-button");
+                todoAddButton.click();
+            } 
+        }
+    }
+
     addEventTodoDeleteButton() {
         const deleteButtons = document.querySelectorAll(".delete-button");
         deleteButtons.forEach((deleteButton,index) => {

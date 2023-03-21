@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Humanbumsuk';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Humanbumsuk.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     box-sizing: border-box;
     color: #121212;
@@ -5,6 +12,10 @@
 }
 
 body {
+    background-image: url("/img/img8.jpg");
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    font-family: 'Humanbumsuk';
     margin: 0;
 }
 

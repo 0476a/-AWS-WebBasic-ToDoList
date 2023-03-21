@@ -142,3 +142,7 @@
 .delete-button:hover {
     background-color: transparent;
 }
+
+.date {
+    font-size: 30px;
+}

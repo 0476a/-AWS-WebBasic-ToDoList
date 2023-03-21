@@ -36,6 +36,13 @@ class TodoEvent {
         deleteButtons.forEach((deleteButton,index) => {
             deleteButton.onclick = () => {
                 TodoService.getInstance().deleteTodo(index);
+                if(this.currentFilter == "ing"){
+                    this.addEventTodoIngClick();
+                }
+
+                if(this.currentFilter == "complete"){
+                    this.addEventTodoCompleteClick()
+                }
             }
         });
     }

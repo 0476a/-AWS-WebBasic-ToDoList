@@ -1,5 +1,12 @@
+@font-face {
+    font-family: 'Humanbumsuk';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Humanbumsuk.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Humanbumsuk';
 }
 
 .container {
@@ -12,14 +19,64 @@ body {
     padding: 20px;
 }
 
+.calendar-title .fa-solid {
+    font-size: 30px;
+    padding-right: 5px;
+}
+
 .calendar-title {
-    font-size: 24px;
+    font-size: 40px;
     margin-bottom: 20px;
 }
 
-.calendar-main {
+
+.calendar-navigation {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100px;
+}
+
+.calendar-navigation > button {
+    height: 100px;
+}
+
+.calendar-navigation .fa-solid {
+    font-size: 20px;
+}
+
+.calendar-prev {
+    background-color: transparent;
+}
+
+.calendar-prev:hover {
+    background-color: transparent;
+}
+
+.calendar-next {
+    background-color: transparent;
+}
+
+.calendar-next:hover {
+    background-color: transparent;
+}
+
+.calendar-month-year {
+    display: flex;
+    justify-content: center;
+
+    width: 200px;
+    height: 100px;
+
+}
+
+.calendar-year {
+    padding-right: 30px;
+    font-size: 30px;
+}
+
+.calendar-month {
+    font-size: 30px;
 }
 
 .calendar-day {
@@ -37,3 +94,22 @@ body {
 .calendar-day:nth-child(7n) {
     color: blue;
 }
+
+.calendar-table {
+    margin: 0px auto;
+    width: 540px;
+    height: 400px;
+}
+
+th {
+    font-size: 20px;
+}
+
+th:nth-child(1) {
+    color: red;
+}
+
+th:nth-child(7) {
+    color: blue;
+}
+

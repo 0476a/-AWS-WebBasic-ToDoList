@@ -39,8 +39,8 @@ class Calendar {
         let currentDay = new Date(firstDayOfMonth);
 
         monthYear.innerHTML = `
+            <span class="calendar-year">${this.displayDate.getFullYear() + '년'}</span>
             <span class="calendar-month">${this.getMonthName(this.displayDate.getMonth())}</span>
-            <span class="calendar-year">${this.displayDate.getFullYear()}</span>
         `;
 
         while (currentDay <= lastDayOfMonth) {
@@ -71,8 +71,8 @@ class Calendar {
 
     getMonthName(month) {
         const monthNames = [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December'
+            '1월', '2월', '3월', '4월', '5월', '6월',
+            '7월', '8월', '9월', '10월', '11월', '12월'
         ];
 
         return monthNames[month];

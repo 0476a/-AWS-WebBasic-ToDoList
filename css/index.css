@@ -167,3 +167,14 @@
 .last-time-view {
     margin-left: 10px;
 }
+
+.clear-complete-button {
+    font-size: 12px;
+    font-family: 'Humanbumsuk';
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+.clear-complete-button:hover {
+    background-color: #e4666688
+}

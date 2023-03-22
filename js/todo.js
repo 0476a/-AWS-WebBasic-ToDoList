@@ -169,12 +169,12 @@ class TodoEvent {
         clearCompleteButton.onclick = () => {
             TodoService.getInstance().checkedDeleteTodo();
             if(this.currentFilter == "ing"){
-                    this.addEventTodoIngClick();
-                }
+                this.addEventTodoIngClick();
+            }
 
-                if(this.currentFilter == "complete"){
-                    this.addEventTodoCompleteClick()
-                }
+            if(this.currentFilter == "complete"){
+                this.addEventTodoCompleteClick()
+            }
         }
     }
 }

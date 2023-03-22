@@ -163,6 +163,20 @@ class TodoEvent {
             TodoService.getInstance().clickedButtonColor();
         }
     }
+
+    addEventClearCompleteButton() {
+        const clearCompleteButton = document.querySelector(".clear-complete-button");
+        clearCompleteButton.onclick = () => {
+            TodoService.getInstance().checkedDeleteTodo();
+            if(this.currentFilter == "ing"){
+                    this.addEventTodoIngClick();
+                }
+
+                if(this.currentFilter == "complete"){
+                    this.addEventTodoCompleteClick()
+                }
+        }
+    }
 }
 
 class TodoService {
@@ -241,7 +255,7 @@ class TodoService {
         TodoEvent.getInstance().addEventTodoCheckClick();
         ShowCount.getInstance().updateCheckedCount();
         ShowCount.getInstance().totalCount(this.todoList.length);
-        TodoEvent.getInstance().addEventTodoCountClick()
+        TodoEvent.getInstance().addEventTodoCountClick();
     }
 
     clickedButtonColor() {
@@ -273,6 +287,15 @@ class TodoService {
             ${mainHeader.innerHTML}
         `;
     } 
+
+    checkedDeleteTodo() {
+        const newTodoList = this.todoList.filter((todoObj) => {
+            return todoObj.todoChecked === false;
+        });
+        this.todoList = newTodoList;
+        localStorage.setItem(this.dateString, JSON.stringify(this.todoList));
+        this.loadTodoList();
+    }
 }
 
 class ShowCount {

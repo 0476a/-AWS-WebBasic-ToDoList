@@ -156,6 +156,10 @@
     background-color: transparent;
 }
 
+.start-time:focus, .last-time:focus{
+    background-color: transparent;
+}
+
 .time-view {
     display: flex;
 }

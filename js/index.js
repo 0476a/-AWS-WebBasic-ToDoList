@@ -45,7 +45,7 @@ class Calendar {
 
         while (currentDay <= lastDayOfMonth) {
             const weekRow = document.createElement('tr');
-
+            console.log(weekRow[0]);
             for (let i = 0; i < 7; i++) {
                 const dayCell = document.createElement('td');
                 dayCell.classList.add("calendar-day");
@@ -68,7 +68,7 @@ class Calendar {
                     }
 
                     dayCell.onclick = () => {
-                        window.location.href = `./index.html?date=${dateString}`;
+                        window.location.href = `./todo.html?date=${dateString}`;
                     }
 
                     currentDay.setDate(currentDay.getDate() + 1);

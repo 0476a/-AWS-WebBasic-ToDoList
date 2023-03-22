@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
+    <title>Calendar</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/index.css">
@@ -13,46 +12,35 @@
 </head>
 <body>
     <div class="container">
-        <main class="main-container">
-            <header class="main-header">
-                <h1 class="main-title"><i class="fa-solid fa-user-pen"></i>TO-DO LIST</h1>
-                <div class="todo-count">
-                    <div class="all">
+        <header class="calendar-header">
+            <h1 class="calendar-title"><i class="fa-solid fa-calendar-alt"></i>Calendar</h1>
+        </header>
+        <main class="calendar-container">
+            <div class="calendar-main">
+                <div class="calendar-navigation">
+                    <button class="calendar-prev"><i class="fa-solid fa-square-caret-left"></i></button>
+                    <div class="calendar-month-year">
                     </div>
-                    <div class="ing">
-                    </div>
-                    <div class="complete">
-                    </div>
-                    <a href="./calendar.html" class="calendar-link">Go to Calendar</a>
+                    <button class="calendar-next"><i class="fa-solid fa-square-caret-right"></i></button>
                 </div>
-                <div class="clear-complete">
-                    <button type="button" class="clear-complete-button">Clear Complete</button>
-                </div>
-            </header>
-            <div class="todo-main">
-                <div class="todo-add">
-                    <input type="text" class="todo-add-input" placeholder="새로 작성하기">
-                    <div class="time-input">
-                        <div class="start-time-div">시작시간: <input type="time" class="start-time"></div>
-                        <div class="last-time-div">마감시간: <input type="time" class="last-time"></div>
-                    </div>
-                    
-                    <button class="todo-add-button">➕</button>
-                </div>
-                <div class="todo-add-hidden-blank">
-                    <div class="todo-add-blank hidden-blank">* 내용을 입력해주세요</div>
-                </div>
-                <div class="todo-list">
-                    <ul class="todo-check-list">
-                    </ul>
-                </div>
+                <table class="calendar-table">
+                    <thead class="calendar-thead">
+                        <tr>
+                            <th>일</th>
+                            <th>월</th>
+                            <th>화</th>
+                            <th>수</th>
+                            <th>목</th>
+                            <th>금</th>
+                            <th>토</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
         </main>
     </div>
-
-
-
-    <script src="./js/todo.js"></script>
-    <script src="./js/app.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 </html>

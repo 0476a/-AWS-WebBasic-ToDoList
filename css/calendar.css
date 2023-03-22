@@ -61,6 +61,13 @@ body {
     background-color: transparent;
 }
 
+.calendar-table {
+    margin: 0px auto;
+    width: 540px;
+    table-layout: fixed;
+
+}
+
 .calendar-month-year {
     display: flex;
     justify-content: center;
@@ -80,11 +87,14 @@ body {
 }
 
 .calendar-day {
-    flex: 1;
+    vertical-align: top;
     padding: 10px;
     border: 1px solid #ccc;
-    min-height: 100px;
+    width: 75px;
+    height: 75px;
+    white-space: nowrap;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .calendar-day:nth-child(7n + 1) {
@@ -95,9 +105,6 @@ body {
     color: blue;
 }
 
-.calendar-table {
-    margin: 0px auto;
-}
 
 th {
     font-size: 20px;
@@ -109,10 +116,4 @@ th:nth-child(1) {
 
 th:nth-child(7) {
     color: blue;
-}
-
-
-.calendar-table td {
-    width: 75px;
-    height: 75px;
 }

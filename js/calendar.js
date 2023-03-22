@@ -52,16 +52,28 @@ class Calendar {
 
                 if ((i === currentDay.getDay()) && (currentDay <= lastDayOfMonth)) {
                     dayCell.textContent = currentDay.getDate();
+                    const year = this.displayDate.getFullYear();
+                    const month = this.displayDate.getMonth() + 1;
+                    const day = parseInt(dayCell.textContent);
+                    const dateString = `${year}.${month}.${day}`;
+
+                    const todolist = JSON.parse(localStorage.getItem(dateString))
+                    if(todolist != null) {
+                        for(let i = 0; i < 2; i++) {
+                            console.log(todolist[i]);
+                            if(todolist[i] != undefined) {
+                                dayCell.innerHTML += `<br>${todolist[i].todoContent}`;
+                            }
+                        }
+                    }
+
                     dayCell.onclick = () => {
-                        const year = this.displayDate.getFullYear();
-                        const month = this.displayDate.getMonth() + 1;
-                        const day = parseInt(dayCell.textContent);
-                        const dateString = `${year}.${month}.${day}`;
                         window.location.href = `./index.html?date=${dateString}`;
                     }
 
                     currentDay.setDate(currentDay.getDate() + 1);
                 }
+
                 weekRow.appendChild(dayCell);
             }
 

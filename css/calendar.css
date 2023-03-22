@@ -97,8 +97,6 @@ body {
 
 .calendar-table {
     margin: 0px auto;
-    width: 540px;
-    height: 400px;
 }
 
 th {
@@ -113,3 +111,8 @@ th:nth-child(7) {
     color: blue;
 }
 
+
+.calendar-table td {
+    width: 75px;
+    height: 75px;
+}
